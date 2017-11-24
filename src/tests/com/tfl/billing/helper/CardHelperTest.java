@@ -2,13 +2,14 @@ package tests.com.tfl.billing.helper;
 
 import com.oyster.OysterCard;
 import com.oyster.OysterCardReader;
+import com.tfl.billing.Components.DefaultCustomerDatabase;
+import com.tfl.billing.Components.ICustomerDatabase;
 import com.tfl.billing.JourneyEnd;
 import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.JourneyStart;
 import com.tfl.billing.UnknownOysterCardException;
 import com.tfl.billing.helper.CardHelper;
 import com.tfl.external.Customer;
-import com.tfl.external.CustomerDatabase;
 import com.tfl.underground.OysterReaderLocator;
 import com.tfl.underground.Station;
 import org.junit.Assert;
@@ -31,7 +32,7 @@ public class CardHelperTest {
 
     @Test
     public void cardHelperRecordsCorrectNumberEvents() {
-        CustomerDatabase database = CustomerDatabase.getInstance();
+        ICustomerDatabase database = new DefaultCustomerDatabase();
 
         List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
 
@@ -47,7 +48,7 @@ public class CardHelperTest {
 
     @Test
     public void cardHelperRecordsEventsInCorrectOrder() {
-        CustomerDatabase database = CustomerDatabase.getInstance();
+        ICustomerDatabase database = new DefaultCustomerDatabase();
 
         // Assuming database holds no duplicate customers
         List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
@@ -83,7 +84,7 @@ public class CardHelperTest {
 
     @Test
     public void cardHelperRecordsCorrectEvents() {
-        CustomerDatabase database = CustomerDatabase.getInstance();
+        ICustomerDatabase database = new DefaultCustomerDatabase();
 
         // Assuming database holds no duplicate customers
         List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
@@ -121,7 +122,7 @@ public class CardHelperTest {
 
     @Test(expected = UnknownOysterCardException.class)
     public void throwsExceptionWhenOrderOfEventsIsIncorrect() {
-        CustomerDatabase database = CustomerDatabase.getInstance();
+        ICustomerDatabase database = new DefaultCustomerDatabase();
 
         CardHelper cardHelper = new CardHelper(database);
 

@@ -1,8 +1,10 @@
 package tests.com.tfl.billing;
 
+import com.tfl.billing.Components.DefaultCustomerDatabase;
+import com.tfl.billing.Components.DefaultPaymentSystem;
+import com.tfl.billing.Components.ICustomerDatabase;
+import com.tfl.billing.Components.IPaymentSystem;
 import com.tfl.billing.TravelTracker;
-import com.tfl.external.CustomerDatabase;
-import com.tfl.external.PaymentsSystem;
 import javafx.util.Pair;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,8 +30,8 @@ public class TravelTrackerTest {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(stream));
 
-        CustomerDatabase database = CustomerDatabase.getInstance();
-        PaymentsSystem system = PaymentsSystem.getInstance();
+        ICustomerDatabase database = new DefaultCustomerDatabase();
+        IPaymentSystem system = new DefaultPaymentSystem();
 
         List<Pair<String, UUID>> expected = database.getCustomers()
                 .stream()

@@ -2,30 +2,32 @@ package com.tfl.billing;
 
 import com.oyster.OysterCardReader;
 import com.sun.istack.internal.NotNull;
+import com.tfl.billing.Components.DefaultCustomerDatabase;
+import com.tfl.billing.Components.DefaultPaymentSystem;
+import com.tfl.billing.Components.ICustomerDatabase;
+import com.tfl.billing.Components.IPaymentSystem;
 import com.tfl.billing.helper.CardHelper;
 import com.tfl.billing.helper.JourneyHelper;
 import com.tfl.billing.helper.TotalHelper;
 import com.tfl.external.Customer;
-import com.tfl.external.CustomerDatabase;
-import com.tfl.external.PaymentsSystem;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class TravelTracker {
-    private final CustomerDatabase database;
-    private final PaymentsSystem system;
+    private final ICustomerDatabase database;
+    private final IPaymentSystem system;
     private final CardHelper cardHelper;
 
     public TravelTracker() {
-        this.database = CustomerDatabase.getInstance();
-        this.system = PaymentsSystem.getInstance();
+        this.database = new DefaultCustomerDatabase();
+        this.system = new DefaultPaymentSystem();
 
         this.cardHelper = new CardHelper(database);
     }
 
-    public TravelTracker(@NotNull CustomerDatabase database,
-                         @NotNull PaymentsSystem system) {
+    public TravelTracker(@NotNull ICustomerDatabase database,
+                         @NotNull IPaymentSystem system) {
         this.database = database;
         this.system = system;
 
