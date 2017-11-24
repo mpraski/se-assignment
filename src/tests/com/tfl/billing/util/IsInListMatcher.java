@@ -1,4 +1,4 @@
-package tests.com.tfl.billing;
+package tests.com.tfl.billing.util;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;

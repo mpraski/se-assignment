@@ -1,4 +1,4 @@
-package tests.com.tfl.billing;
+package tests.com.tfl.billing.util;
 
 import com.tfl.billing.Journey;
 import com.tfl.billing.JourneyEnd;

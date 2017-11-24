@@ -8,7 +8,7 @@ import com.tfl.underground.OysterReaderLocator;
 import com.tfl.underground.Station;
 import org.junit.Assert;
 import org.junit.Test;
-import tests.com.tfl.billing.TestUtils;
+import tests.com.tfl.billing.util.TestUtils;
 
 import java.util.ArrayList;
 import java.util.List;

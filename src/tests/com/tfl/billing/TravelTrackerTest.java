@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static tests.com.tfl.billing.IsInListMatcher.oneFrom;
+import static tests.com.tfl.billing.util.IsInListMatcher.oneFrom;
 
 /**
  * Created by marcin on 16.11.17.
