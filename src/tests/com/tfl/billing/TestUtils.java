@@ -6,7 +6,6 @@ import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.JourneyStart;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;

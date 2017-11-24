@@ -23,6 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static tests.com.tfl.billing.IsInListMatcher.containedIn;
+
 /**
  * Created by marcin on 16.11.17.
  */
@@ -52,11 +54,14 @@ public class TravelTrackerTest {
 
         context.checking(new Expectations() {{
             oneOf(database).getCustomers();
-            will(returnIterator(customers));
+            will(returnValue(customers));
 
             exactly(1).of(database).getCustomers();
-            exactly(size).of(system).charge(with(any(Customer.class)), with(any(List.class)), with(any(BigDecimal.class)));
+            exactly(size).of(system).charge(with(containedIn(customers)), with(aNonNull(List.class)), with(aNonNull(BigDecimal.class)));
         }});
+
+        TravelTracker travelTracker = new TravelTracker(database, system);
+        travelTracker.chargeAccounts();
     }
 
     @Test

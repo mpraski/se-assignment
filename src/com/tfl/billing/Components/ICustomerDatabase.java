@@ -10,5 +10,6 @@ import java.util.UUID;
  */
 public interface ICustomerDatabase {
     List<Customer> getCustomers();
+
     boolean isRegisteredId(UUID customer);
 }
