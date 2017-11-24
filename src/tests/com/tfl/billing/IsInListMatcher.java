@@ -18,7 +18,7 @@ public class IsInListMatcher<T> extends TypeSafeMatcher<T> {
     }
 
     @Factory
-    public static <T> Matcher<T> containedIn(List<T> list) {
+    public static <T> Matcher<T> oneFrom(List<T> list) {
         return new IsInListMatcher<>(list);
     }
 

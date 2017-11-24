@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b90194fd-4de2-42c8-952e-e7a656b475e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/IsInListMatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/com/tfl/billing/TravelTracker.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/com/tfl/billing/TravelTracker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/com/tfl/billing/helper/CardHelper.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/com/tfl/billing/helper/CardHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TravelTrackerTest.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TravelTrackerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/helper/CardHelperTest.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/helper/CardHelperTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TestUtils.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TestUtils.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/tfl/billing/Components/ICustomerDatabase.java" afterPath="$PROJECT_DIR$/src/com/tfl/billing/Components/ICustomerDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/TestUtils.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/TestUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/IsInListMatcher.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/IsInListMatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java" />
     </list>
     <ignored path="Oyster-Idea.iws" />
@@ -44,20 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IsInListMatcher.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IsInListMatcher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/IsInListMatcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+            <state relative-caret-position="252">
+              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#362#363#0" expanded="true" />
                 <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#469#470#0" expanded="true" />
-                <element signature="e#519#520#0" expanded="true" />
-                <element signature="e#577#578#0" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-                <element signature="e#763#764#0" expanded="true" />
+                <element signature="e#465#466#0" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#612#613#0" expanded="true" />
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#759#760#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,14 +127,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TravelTrackerTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TravelTrackerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="324">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -956,7 +949,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511525916845</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed test for TravelTracker; added custom hamcrest matcher for checking, if object is contained in a list">
+      <created>1511527847506</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1511527847506</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1017,7 +1017,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22061966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22061966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1048,7 +1048,8 @@
     <MESSAGE value="Added interfaces representing customer database and payment system" />
     <MESSAGE value="Added default implementations of the database and billing systems (wrappers around CustomerDatabase and PaymentsSystem), refactored code to use them instead of concrete classes." />
     <MESSAGE value="Added additional test for TravelTracker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added additional test for TravelTracker" />
+    <MESSAGE value="Fixed test for TravelTracker; added custom hamcrest matcher for checking, if object is contained in a list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed test for TravelTracker; added custom hamcrest matcher for checking, if object is contained in a list" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1430,30 +1431,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/IsInListMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+        <state relative-caret-position="252">
+          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#362#363#0" expanded="true" />
             <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
