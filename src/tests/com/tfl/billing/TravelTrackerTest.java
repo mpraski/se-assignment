@@ -1,6 +1,7 @@
 package tests.com.tfl.billing;
 
 import com.oyster.OysterCard;
+import com.oyster.OysterCardReader;
 import com.tfl.billing.Journey;
 import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.TravelTracker;
@@ -12,6 +13,8 @@ import com.tfl.billing.helper.ICardHelper;
 import com.tfl.billing.helper.IJourneyHelper;
 import com.tfl.billing.helper.ITotalHelper;
 import com.tfl.external.Customer;
+import com.tfl.underground.OysterReaderLocator;
+import com.tfl.underground.Station;
 import javafx.util.Pair;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -33,6 +36,9 @@ import static tests.com.tfl.billing.util.IsInListMatcher.oneFrom;
 
 public class TravelTrackerTest {
 
+    private final static OysterCardReader READER_ONE = OysterReaderLocator.atStation(Station.EUSTON);
+    private final static OysterCardReader READER_TWO = OysterReaderLocator.atStation(Station.GOODGE_STREET);
+    private final static OysterCard DUMMY_OYSTER = new OysterCard("38400000-8cf0-11bd-b23e-10b96e4ef00d");
     private final static Customer DUMMY_CUSTOMER_1 = new Customer("Jimmy Page", new OysterCard("38400000-8cf0-11bd-b23e-10b96e4ef00d"));
     private final static Customer DUMMY_CUSTOMER_2 = new Customer("Jimmy Page", new OysterCard("48400000-8cf0-11bd-b23e-10b96e4ef00d"));
     private final static Customer DUMMY_CUSTOMER_3 = new Customer("Jimmy Page", new OysterCard("58400000-8cf0-11bd-b23e-10b96e4ef00d"));
@@ -107,7 +113,7 @@ public class TravelTrackerTest {
             exactly(size).of(system).charge(with(oneFrom(customers)), with(emptyJourneyList), with(zero));
         }});
 
-        TravelTracker travelTracker = new TravelTracker(database, system);
+        TravelTracker travelTracker = new TravelTracker(database, system, cardHelper, journeyHelper, totalHelper);
         travelTracker.chargeAccounts();
     }
 
@@ -148,5 +154,34 @@ public class TravelTrackerTest {
         }
 
         Assert.assertEquals("Every customer in the database was charged", outputted, expected);
+    }
+
+    @Test
+    public void travelTrackerRegistersItselfWithCardReaders() {
+        ICustomerDatabase database = context.mock(ICustomerDatabase.class);
+        IPaymentSystem system = context.mock(IPaymentSystem.class);
+
+        ICardHelper cardHelper = context.mock(ICardHelper.class);
+        IJourneyHelper journeyHelper = context.mock(IJourneyHelper.class);
+        ITotalHelper totalHelper = context.mock(ITotalHelper.class);
+
+        context.checking(new Expectations() {{
+            oneOf(database).isRegisteredId(DUMMY_OYSTER.id());
+            will(returnValue(true));
+
+            ignoring(system);
+
+            ignoring(journeyHelper);
+            ignoring(totalHelper);
+
+            exactly(1).of(cardHelper).cardScanned(DUMMY_CUSTOMER_1.cardId(), READER_ONE.id());
+            exactly(1).of(cardHelper).cardScanned(DUMMY_CUSTOMER_1.cardId(), READER_TWO.id());
+        }});
+
+        TravelTracker travelTracker = new TravelTracker(database, system, cardHelper, journeyHelper, totalHelper);
+        travelTracker.connect(READER_ONE, READER_TWO);
+
+        READER_ONE.touch(DUMMY_OYSTER);
+        READER_TWO.touch(DUMMY_OYSTER);
     }
 }

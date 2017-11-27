@@ -52,6 +52,7 @@ public class DefaultJourneyHelperTest {
             events.add(new JourneyEnd(DUMMY_CUSTOMER.cardId(), READER_END));
         }
 
+        // Check, if journeys are properly constructed from a series of start and end events
         Assert.assertEquals("Number of journeys is correct", journeyHelper.getJourneys(DUMMY_CUSTOMER, events).size(), JOURNEY_NUMBER);
     }
 }

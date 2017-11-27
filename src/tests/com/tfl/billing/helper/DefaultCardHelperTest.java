@@ -49,35 +49,38 @@ public class DefaultCardHelperTest {
 
     @Test
     public void cardHelperRecordsEventsInCorrectOrder() {
+        // Create a mock instance of ICustomerDatabase filled with random data
         ICustomerDatabase database = TestUtils.mockCustomerDatabase(CUSTOMER_NUMBER);
-
-        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 
         ICardHelper cardHelper = new DefaultCardHelper(database);
 
+        // Choose a random sample from the database
+        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
+
+        // Simulate touch events for random customers from the sample
         for (int i = 0; i < EVENT_NUMBER; i++) {
-            Customer customer = TestUtils.randomItem(customers);
-            cardHelper.cardScanned(customer.cardId(), READER_START.id());
+            cardHelper.cardScanned(TestUtils.randomItem(customers).cardId(), READER_START.id());
         }
 
-        Customer customer = TestUtils.randomItem(customers);
+        // For each customer from the sample check, if the events are ordered correctly
+        for (Customer customer : customers) {
+            List<JourneyEvent> events = cardHelper.getEvents().stream()
+                    .filter(event -> event.cardId().equals(customer.cardId()))
+                    .collect(Collectors.toList());
 
-        List<JourneyEvent> events = cardHelper.getEvents().stream()
-                .filter(event -> event.cardId().equals(customer.cardId()))
-                .collect(Collectors.toList());
+            JourneyEvent last = null;
+            for (JourneyEvent event : events) {
+                if (last == null) {
+                    last = event;
+                    continue;
+                }
 
-        JourneyEvent last = null;
-        for (JourneyEvent event : events) {
-            if (last == null) {
-                last = event;
-                continue;
-            }
-
-            if (event instanceof JourneyStart && last instanceof JourneyStart
-                    || event instanceof JourneyEnd && last instanceof JourneyEnd) {
-                Assert.fail("Events are not in correct order");
-            } else {
-                last = event;
+                if (event instanceof JourneyStart && last instanceof JourneyStart
+                        || event instanceof JourneyEnd && last instanceof JourneyEnd) {
+                    Assert.fail("Events are not in correct order");
+                } else {
+                    last = event;
+                }
             }
         }
     }
@@ -88,10 +91,12 @@ public class DefaultCardHelperTest {
 
         List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 
+        // Extract customer's uuids
         Set<UUID> customerIds = customers.stream()
                 .map(customer -> customer.cardId())
                 .collect(Collectors.toSet());
 
+        // Extract readers' uuids
         Set<UUID> readerIds = new HashSet<>(Arrays.asList(
                 READER_START.id(),
                 READER_END.id()
@@ -99,21 +104,25 @@ public class DefaultCardHelperTest {
 
         DefaultCardHelper cardHelper = new DefaultCardHelper(database);
 
+        // For each customer from the sample simulate touch in and out events
         for (Customer customer : customers) {
             cardHelper.cardScanned(customer.cardId(), READER_START.id());
             cardHelper.cardScanned(customer.cardId(), READER_END.id());
         }
 
+        // Extract uuids of scanned customers
         Set<UUID> scannedCustomerIds = cardHelper.getEvents()
                 .stream()
                 .map((journeyEvent -> journeyEvent.cardId()))
                 .collect(Collectors.toSet());
 
+        // Extract uuids of used scanners
         Set<UUID> scannedReaderIds = cardHelper.getEvents()
                 .stream()
                 .map((journeyEvent -> journeyEvent.readerId()))
                 .collect(Collectors.toSet());
 
+        // Compare the two
         Assert.assertEquals("Scanned customer IDs", customerIds, scannedCustomerIds);
         Assert.assertEquals("Scanned reader IDs", readerIds, scannedReaderIds);
     }
@@ -125,6 +134,7 @@ public class DefaultCardHelperTest {
 
         DefaultCardHelper cardHelper = new DefaultCardHelper(database);
 
+        // Check, if exception is thrown when non-existent customer uuid is scanned
         cardHelper.cardScanned(NONEXISTENT_CUSTOMER.cardId(), READER_START.id());
     }
 }
