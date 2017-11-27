@@ -33,7 +33,7 @@ public class DefaultCardHelperTest {
 
     @Test
     public void cardHelperRecordsCorrectNumberEvents() {
-        ICustomerDatabase database = TestUtils.mockCustomerDatabase(50);
+        ICustomerDatabase database = TestUtils.mockCustomerDatabase(CUSTOMER_NUMBER);
 
         List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 

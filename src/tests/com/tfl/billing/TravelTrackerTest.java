@@ -1,11 +1,16 @@
 package tests.com.tfl.billing;
 
 import com.oyster.OysterCard;
+import com.tfl.billing.Journey;
+import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.TravelTracker;
 import com.tfl.billing.components.DefaultCustomerDatabase;
 import com.tfl.billing.components.DefaultPaymentSystem;
 import com.tfl.billing.components.ICustomerDatabase;
 import com.tfl.billing.components.IPaymentSystem;
+import com.tfl.billing.helper.ICardHelper;
+import com.tfl.billing.helper.IJourneyHelper;
+import com.tfl.billing.helper.ITotalHelper;
 import com.tfl.external.Customer;
 import javafx.util.Pair;
 import org.jmock.Expectations;
@@ -15,10 +20,7 @@ import org.junit.Test;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -39,7 +41,7 @@ public class TravelTrackerTest {
     Mockery context = new Mockery();
 
     @Test
-    public void travelTrackerPerformsCorrectNumberOfOperations() {
+    public void travelTrackerCorrectlyUsesDatabaseAndBillingSystem() {
         ICustomerDatabase database = context.mock(ICustomerDatabase.class);
         IPaymentSystem system = context.mock(IPaymentSystem.class);
 
@@ -58,6 +60,48 @@ public class TravelTrackerTest {
 
             exactly(1).of(database).getCustomers();
             exactly(size).of(system).charge(with(oneFrom(customers)), with(aNonNull(List.class)), with(aNonNull(BigDecimal.class)));
+        }});
+
+        TravelTracker travelTracker = new TravelTracker(database, system);
+        travelTracker.chargeAccounts();
+    }
+
+    @Test
+    public void travelTrackerCorrectlyUsesHelpers() {
+        ICustomerDatabase database = context.mock(ICustomerDatabase.class);
+        IPaymentSystem system = context.mock(IPaymentSystem.class);
+
+        ICardHelper cardHelper = context.mock(ICardHelper.class);
+        IJourneyHelper journeyHelper = context.mock(IJourneyHelper.class);
+        ITotalHelper totalHelper = context.mock(ITotalHelper.class);
+
+        final List<Customer> customers = new ArrayList<>(Arrays.asList(
+                DUMMY_CUSTOMER_1,
+                DUMMY_CUSTOMER_2,
+                DUMMY_CUSTOMER_3,
+                DUMMY_CUSTOMER_4,
+                DUMMY_CUSTOMER_5
+        ));
+        final int size = customers.size();
+
+        final List<JourneyEvent> emptyEventList = Collections.emptyList();
+        final List<Journey> emptyJourneyList = Collections.emptyList();
+
+        final BigDecimal zero = new BigDecimal("0.00");
+
+        context.checking(new Expectations() {{
+            oneOf(database).getCustomers();
+            will(returnValue(customers));
+
+            exactly(size).of(cardHelper).getEvents();
+            will(returnValue(emptyEventList));
+            exactly(size).of(journeyHelper).getJourneys(with(oneFrom(customers)), with(emptyEventList));
+            will(returnValue(emptyJourneyList));
+            exactly(size).of(totalHelper).getTotal(emptyJourneyList);
+            will(returnValue(zero));
+
+            ignoring(database);
+            exactly(size).of(system).charge(with(oneFrom(customers)), with(emptyJourneyList), with(zero));
         }});
 
         TravelTracker travelTracker = new TravelTracker(database, system);

@@ -24,7 +24,7 @@ public class TotalHelperTest {
 
     private final static UUID READER_START = OysterReaderLocator.atStation(Station.EUSTON).id();
     private final static UUID READER_END = OysterReaderLocator.atStation(Station.GOODGE_STREET).id();
-    private final static UUID DUMMY_CUSTOMER = UUID.fromString("1e138616-ce25-11e7-abc4-cec278b6b50a");
+    private final static UUID DUMMY_CUSTOMER_UUID = UUID.fromString("1e138616-ce25-11e7-abc4-cec278b6b50a");
 
     @Test
     public void areJourneyPricesCapped() {
@@ -53,10 +53,10 @@ public class TotalHelperTest {
         ITotalHelper totalHelper = new DefaultTotalHelper(new DefaultJourneyHelper());
 
         List<Journey> journeys = new ArrayList<>(Arrays.asList(
-                TestUtils.mockJourney(DUMMY_CUSTOMER, READER_START, READER_END, 7, 0, 10),
-                TestUtils.mockJourney(DUMMY_CUSTOMER, READER_END, READER_START, 8, 0, 10),
-                TestUtils.mockJourney(DUMMY_CUSTOMER, READER_START, READER_END, 12, 0, 10),
-                TestUtils.mockJourney(DUMMY_CUSTOMER, READER_END, READER_START, 13, 0, 10)
+                TestUtils.mockJourney(DUMMY_CUSTOMER_UUID, READER_START, READER_END, 7, 0, 10),
+                TestUtils.mockJourney(DUMMY_CUSTOMER_UUID, READER_END, READER_START, 8, 0, 10),
+                TestUtils.mockJourney(DUMMY_CUSTOMER_UUID, READER_START, READER_END, 12, 0, 10),
+                TestUtils.mockJourney(DUMMY_CUSTOMER_UUID, READER_END, READER_START, 13, 0, 10)
         ));
 
         BigDecimal total = new BigDecimal("9.00");
