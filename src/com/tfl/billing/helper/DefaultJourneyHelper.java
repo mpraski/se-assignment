@@ -11,13 +11,10 @@ import java.util.stream.Collectors;
 /**
  * Created by marcin on 20.11.17.
  */
-public final class JourneyHelper {
+public final class DefaultJourneyHelper implements IJourneyHelper {
 
-    // Prevent instantiation
-    private JourneyHelper() {
-    }
-
-    public static List<Journey> getJourneys(Customer customer, List<JourneyEvent> events) {
+    @Override
+    public List<Journey> getJourneys(Customer customer, List<JourneyEvent> events) {
         List<JourneyEvent> customerJourneyEvents = events.stream()
                 .filter(event -> event.cardId().equals(customer.cardId()))
                 .collect(Collectors.toList());
@@ -38,7 +35,8 @@ public final class JourneyHelper {
         return journeys;
     }
 
-    public static JourneyType getJourneyType(Journey journey) {
+    @Override
+    public JourneyType getJourneyType(Journey journey) {
         Calendar calendar = Calendar.getInstance();
 
         calendar.setTime(journey.startTime());

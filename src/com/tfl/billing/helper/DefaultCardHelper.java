@@ -1,24 +1,23 @@
 package com.tfl.billing.helper;
 
-import com.oyster.ScanListener;
-import com.tfl.billing.Components.ICustomerDatabase;
 import com.tfl.billing.JourneyEnd;
 import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.JourneyStart;
 import com.tfl.billing.UnknownOysterCardException;
+import com.tfl.billing.components.ICustomerDatabase;
 
 import java.util.*;
 
 /**
  * Created by marcin on 20.11.17.
  */
-public final class CardHelper implements ScanListener {
+public final class DefaultCardHelper implements ICardHelper {
 
     private final List<JourneyEvent> events = new ArrayList<>();
     private final Set<UUID> travellers = new HashSet<>();
     private final ICustomerDatabase database;
 
-    public CardHelper(ICustomerDatabase database) {
+    public DefaultCardHelper(ICustomerDatabase database) {
         this.database = database;
     }
 
@@ -35,6 +34,7 @@ public final class CardHelper implements ScanListener {
         }
     }
 
+    @Override
     public List<JourneyEvent> getEvents() {
         return events;
     }

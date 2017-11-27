@@ -2,7 +2,9 @@ package tests.com.tfl.billing.helper;
 
 import com.tfl.billing.Journey;
 import com.tfl.billing.JourneyConstants;
-import com.tfl.billing.helper.TotalHelper;
+import com.tfl.billing.helper.DefaultJourneyHelper;
+import com.tfl.billing.helper.DefaultTotalHelper;
+import com.tfl.billing.helper.ITotalHelper;
 import com.tfl.underground.OysterReaderLocator;
 import com.tfl.underground.Station;
 import org.junit.Assert;
@@ -26,24 +28,30 @@ public class TotalHelperTest {
 
     @Test
     public void areJourneyPricesCapped() {
-        Assert.assertEquals("Cap is applied to peak journey", TotalHelper.applyCap(new BigDecimal(12.0), true), JourneyConstants.PEAK_CAP);
-        Assert.assertEquals("Cap is applied to off peak journey", TotalHelper.applyCap(new BigDecimal(12.0), false), JourneyConstants.OFF_PEAK_CAP);
+        DefaultTotalHelper totalHelper = new DefaultTotalHelper(new DefaultJourneyHelper());
+
+        Assert.assertEquals("Cap is applied to peak journey", totalHelper.applyCap(new BigDecimal(12.0), true), JourneyConstants.PEAK_CAP);
+        Assert.assertEquals("Cap is applied to off peak journey", totalHelper.applyCap(new BigDecimal(12.0), false), JourneyConstants.OFF_PEAK_CAP);
     }
 
     @Test
     public void arePricesCorrectlyRounded() {
+        DefaultTotalHelper totalHelper = new DefaultTotalHelper(new DefaultJourneyHelper());
+
         BigDecimal price = new BigDecimal("12.005");
         BigDecimal rounded = new BigDecimal("12.01");
 
         BigDecimal price2 = new BigDecimal("12.004");
         BigDecimal rounded2 = new BigDecimal("12.00");
 
-        Assert.assertTrue("Properly rounded", TotalHelper.roundToNearestPenny(price).compareTo(rounded) == 0);
-        Assert.assertTrue("Properly rounded", TotalHelper.roundToNearestPenny(price2).compareTo(rounded2) == 0);
+        Assert.assertTrue("Properly rounded", totalHelper.roundToNearestPenny(price).compareTo(rounded) == 0);
+        Assert.assertTrue("Properly rounded", totalHelper.roundToNearestPenny(price2).compareTo(rounded2) == 0);
     }
 
     @Test
     public void isCorrectTotalReturned() {
+        ITotalHelper totalHelper = new DefaultTotalHelper(new DefaultJourneyHelper());
+
         List<Journey> journeys = new ArrayList<>(Arrays.asList(
                 TestUtils.mockJourney(DUMMY_CUSTOMER, READER_START, READER_END, 7, 0, 10),
                 TestUtils.mockJourney(DUMMY_CUSTOMER, READER_END, READER_START, 8, 0, 10),
@@ -53,6 +61,6 @@ public class TotalHelperTest {
 
         BigDecimal total = new BigDecimal("9.00");
 
-        Assert.assertTrue("Properly computed total price", TotalHelper.getTotal(journeys).compareTo(total) == 0);
+        Assert.assertTrue("Properly computed total price", totalHelper.getTotal(journeys).compareTo(total) == 0);
     }
 }

@@ -1,11 +1,11 @@
 package tests.com.tfl.billing;
 
 import com.oyster.OysterCard;
-import com.tfl.billing.Components.DefaultCustomerDatabase;
-import com.tfl.billing.Components.DefaultPaymentSystem;
-import com.tfl.billing.Components.ICustomerDatabase;
-import com.tfl.billing.Components.IPaymentSystem;
 import com.tfl.billing.TravelTracker;
+import com.tfl.billing.components.DefaultCustomerDatabase;
+import com.tfl.billing.components.DefaultPaymentSystem;
+import com.tfl.billing.components.ICustomerDatabase;
+import com.tfl.billing.components.IPaymentSystem;
 import com.tfl.external.Customer;
 import javafx.util.Pair;
 import org.jmock.Expectations;

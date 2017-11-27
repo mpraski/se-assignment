@@ -2,7 +2,8 @@ package tests.com.tfl.billing.helper;
 
 import com.oyster.OysterCard;
 import com.tfl.billing.*;
-import com.tfl.billing.helper.JourneyHelper;
+import com.tfl.billing.helper.DefaultJourneyHelper;
+import com.tfl.billing.helper.IJourneyHelper;
 import com.tfl.external.Customer;
 import com.tfl.underground.OysterReaderLocator;
 import com.tfl.underground.Station;
@@ -17,7 +18,7 @@ import java.util.UUID;
 /**
  * Created by marcin on 20.11.17.
  */
-public class JourneyHelperTest {
+public class DefaultJourneyHelperTest {
 
     private final static UUID READER_START = OysterReaderLocator.atStation(Station.EUSTON).id();
     private final static UUID READER_END = OysterReaderLocator.atStation(Station.GOODGE_STREET).id();
@@ -27,19 +28,23 @@ public class JourneyHelperTest {
 
     @Test
     public void isCorrectJourneyTypeReturned() {
+        IJourneyHelper journeyHelper = new DefaultJourneyHelper();
+
         Journey peak_long = TestUtils.mockJourney(DUMMY_CUSTOMER.cardId(), READER_START, READER_END, 7, 0, 30);
         Journey peak_short = TestUtils.mockJourney(DUMMY_CUSTOMER.cardId(), READER_START, READER_END, 7, 0, 15);
         Journey off_peak_long = TestUtils.mockJourney(DUMMY_CUSTOMER.cardId(), READER_START, READER_END, 13, 0, 30);
         Journey off_peak_short = TestUtils.mockJourney(DUMMY_CUSTOMER.cardId(), READER_START, READER_END, 13, 0, 15);
 
-        Assert.assertEquals("Properly recognized as peak long", JourneyHelper.getJourneyType(peak_long), JourneyType.LONG_PEAK);
-        Assert.assertEquals("Properly recognized as peak short", JourneyHelper.getJourneyType(peak_short), JourneyType.SHORT_PEAK);
-        Assert.assertEquals("Properly recognized as off peak long", JourneyHelper.getJourneyType(off_peak_long), JourneyType.LONG_OFF_PEAK);
-        Assert.assertEquals("Properly recognized as off peak short", JourneyHelper.getJourneyType(off_peak_short), JourneyType.SHORT_OFF_PEAK);
+        Assert.assertEquals("Properly recognized as peak long", journeyHelper.getJourneyType(peak_long), JourneyType.LONG_PEAK);
+        Assert.assertEquals("Properly recognized as peak short", journeyHelper.getJourneyType(peak_short), JourneyType.SHORT_PEAK);
+        Assert.assertEquals("Properly recognized as off peak long", journeyHelper.getJourneyType(off_peak_long), JourneyType.LONG_OFF_PEAK);
+        Assert.assertEquals("Properly recognized as off peak short", journeyHelper.getJourneyType(off_peak_short), JourneyType.SHORT_OFF_PEAK);
     }
 
     @Test
     public void isCorrectNumberOfJourneysCalculated() {
+        IJourneyHelper journeyHelper = new DefaultJourneyHelper();
+
         List<JourneyEvent> events = new ArrayList<>();
 
         for (int i = 0; i < JOURNEY_NUMBER; i++) {
@@ -47,6 +52,6 @@ public class JourneyHelperTest {
             events.add(new JourneyEnd(DUMMY_CUSTOMER.cardId(), READER_END));
         }
 
-        Assert.assertEquals("Number of journeys is correct", JourneyHelper.getJourneys(DUMMY_CUSTOMER, events).size(), JOURNEY_NUMBER);
+        Assert.assertEquals("Number of journeys is correct", journeyHelper.getJourneys(DUMMY_CUSTOMER, events).size(), JOURNEY_NUMBER);
     }
 }

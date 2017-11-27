@@ -1,4 +1,4 @@
-package com.tfl.billing.Components;
+package com.tfl.billing.components;
 
 import com.tfl.external.Customer;
 

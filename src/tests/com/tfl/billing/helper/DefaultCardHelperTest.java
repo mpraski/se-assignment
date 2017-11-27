@@ -2,13 +2,13 @@ package tests.com.tfl.billing.helper;
 
 import com.oyster.OysterCard;
 import com.oyster.OysterCardReader;
-import com.tfl.billing.Components.DefaultCustomerDatabase;
-import com.tfl.billing.Components.ICustomerDatabase;
 import com.tfl.billing.JourneyEnd;
 import com.tfl.billing.JourneyEvent;
 import com.tfl.billing.JourneyStart;
 import com.tfl.billing.UnknownOysterCardException;
-import com.tfl.billing.helper.CardHelper;
+import com.tfl.billing.components.ICustomerDatabase;
+import com.tfl.billing.helper.DefaultCardHelper;
+import com.tfl.billing.helper.ICardHelper;
 import com.tfl.external.Customer;
 import com.tfl.underground.OysterReaderLocator;
 import com.tfl.underground.Station;
@@ -22,9 +22,10 @@ import java.util.stream.Collectors;
 /**
  * Created by marcin on 20.11.17.
  */
-public class CardHelperTest {
+public class DefaultCardHelperTest {
 
-    private final static int CUSTOMER_NUMBER = 5;
+    private final static int CUSTOMER_NUMBER = 50;
+    private final static int RANDOM_SAMPLE = 10;
     private final static int EVENT_NUMBER = 100;
     private final static Customer NONEXISTENT_CUSTOMER = new Customer("Chris Squire", new OysterCard("00000000-0000-0000-0000-000000000000"));
     private final static OysterCardReader READER_START = OysterReaderLocator.atStation(Station.EUSTON);
@@ -32,28 +33,27 @@ public class CardHelperTest {
 
     @Test
     public void cardHelperRecordsCorrectNumberEvents() {
-        ICustomerDatabase database = new DefaultCustomerDatabase();
+        ICustomerDatabase database = TestUtils.mockCustomerDatabase(50);
 
-        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
+        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 
-        CardHelper cardHelper = new CardHelper(database);
+        ICardHelper cardHelper = new DefaultCardHelper(database);
 
         for (Customer customer : customers) {
             cardHelper.cardScanned(customer.cardId(), READER_START.id());
             cardHelper.cardScanned(customer.cardId(), READER_END.id());
         }
 
-        Assert.assertEquals("Number of recorded events", cardHelper.getEvents().size() / 2, CUSTOMER_NUMBER);
+        Assert.assertEquals("Number of recorded events", cardHelper.getEvents().size() / 2, RANDOM_SAMPLE);
     }
 
     @Test
     public void cardHelperRecordsEventsInCorrectOrder() {
-        ICustomerDatabase database = new DefaultCustomerDatabase();
+        ICustomerDatabase database = TestUtils.mockCustomerDatabase(CUSTOMER_NUMBER);
 
-        // Assuming database holds no duplicate customers
-        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
+        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 
-        CardHelper cardHelper = new CardHelper(database);
+        ICardHelper cardHelper = new DefaultCardHelper(database);
 
         for (int i = 0; i < EVENT_NUMBER; i++) {
             Customer customer = TestUtils.randomItem(customers);
@@ -84,10 +84,9 @@ public class CardHelperTest {
 
     @Test
     public void cardHelperRecordsCorrectEvents() {
-        ICustomerDatabase database = new DefaultCustomerDatabase();
+        ICustomerDatabase database = TestUtils.mockCustomerDatabase(CUSTOMER_NUMBER);
 
-        // Assuming database holds no duplicate customers
-        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), CUSTOMER_NUMBER);
+        List<Customer> customers = TestUtils.randomItems(database.getCustomers(), RANDOM_SAMPLE);
 
         Set<UUID> customerIds = customers.stream()
                 .map(customer -> customer.cardId())
@@ -98,7 +97,7 @@ public class CardHelperTest {
                 READER_END.id()
         ));
 
-        CardHelper cardHelper = new CardHelper(database);
+        DefaultCardHelper cardHelper = new DefaultCardHelper(database);
 
         for (Customer customer : customers) {
             cardHelper.cardScanned(customer.cardId(), READER_START.id());
@@ -122,9 +121,9 @@ public class CardHelperTest {
 
     @Test(expected = UnknownOysterCardException.class)
     public void throwsExceptionWhenOrderOfEventsIsIncorrect() {
-        ICustomerDatabase database = new DefaultCustomerDatabase();
+        ICustomerDatabase database = TestUtils.mockCustomerDatabase(CUSTOMER_NUMBER);
 
-        CardHelper cardHelper = new CardHelper(database);
+        DefaultCardHelper cardHelper = new DefaultCardHelper(database);
 
         cardHelper.cardScanned(NONEXISTENT_CUSTOMER.cardId(), READER_START.id());
     }

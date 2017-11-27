@@ -9,20 +9,23 @@ import java.util.List;
 /**
  * Created by marcin on 20.11.17.
  */
-public final class TotalHelper {
+public final class DefaultTotalHelper implements ITotalHelper {
 
-    // Prevent instantiation
-    private TotalHelper() {
+    private final IJourneyHelper journeyHelper;
+
+    public DefaultTotalHelper(IJourneyHelper journeyHelper) {
+        this.journeyHelper = journeyHelper;
     }
 
-    public static BigDecimal getTotal(List<Journey> journeys) {
+    @Override
+    public BigDecimal getTotal(List<Journey> journeys) {
         BigDecimal total = new BigDecimal(0);
         boolean isPeak = false;
 
         for (Journey journey : journeys) {
             BigDecimal journeyPrice = null;
 
-            switch (JourneyHelper.getJourneyType(journey)) {
+            switch (journeyHelper.getJourneyType(journey)) {
                 case LONG_PEAK:
                     journeyPrice = JourneyConstants.LONG_PEAK_PRICE;
                     isPeak = true;
@@ -48,11 +51,11 @@ public final class TotalHelper {
         return total;
     }
 
-    public static BigDecimal applyCap(BigDecimal total, boolean isPeak) {
+    public BigDecimal applyCap(BigDecimal total, boolean isPeak) {
         return isPeak ? total.min(JourneyConstants.PEAK_CAP) : total.min(JourneyConstants.OFF_PEAK_CAP);
     }
 
-    public static BigDecimal roundToNearestPenny(BigDecimal poundsAndPence) {
+    public BigDecimal roundToNearestPenny(BigDecimal poundsAndPence) {
         return poundsAndPence.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }
