@@ -95,12 +95,15 @@ public class TravelTrackerTest {
 
             exactly(size).of(cardHelper).getEvents();
             will(returnValue(emptyEventList));
+
             exactly(size).of(journeyHelper).getJourneys(with(oneFrom(customers)), with(emptyEventList));
             will(returnValue(emptyJourneyList));
+
             exactly(size).of(totalHelper).getTotal(emptyJourneyList);
             will(returnValue(zero));
 
-            ignoring(database);
+            exactly(1).of(database).getCustomers();
+
             exactly(size).of(system).charge(with(oneFrom(customers)), with(emptyJourneyList), with(zero));
         }});
 

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b90194fd-4de2-42c8-952e-e7a656b475e8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TravelTrackerTest.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/TravelTrackerTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/helper/TotalHelperTest.class" afterPath="$PROJECT_DIR$/out/production/Oyster-Idea/tests/com/tfl/billing/helper/TotalHelperTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/helper/DefaultCardHelperTest.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/helper/DefaultCardHelperTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/com/tfl/billing/helper/TotalHelperTest.java" afterPath="$PROJECT_DIR$/src/tests/com/tfl/billing/helper/TotalHelperTest.java" />
     </list>
     <ignored path="Oyster-Idea.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,8 +55,8 @@
       <file leaf-file-name="DefaultCardHelperTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/helper/DefaultCardHelperTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-594">
-              <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+            <state relative-caret-position="288">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,6 +82,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ITotalHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/helper/ITotalHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ICustomerDatabase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/components/ICustomerDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,21 +107,9 @@
       <file leaf-file-name="TravelTrackerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+            <state relative-caret-position="288">
+              <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IJourneyHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/helper/IJourneyHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -987,19 +987,17 @@
       <option name="project" value="LOCAL" />
       <updated>1511779681533</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Refactored TravelTracker tests">
+      <created>1511782575271</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1511782575271</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 11h 01m 20s.xml">
-      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 11h 20m 50s.xml">
-      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 11h 23m 51s.xml">
-      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 11h 23m 56s.xml">
       <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
     </history-entry>
@@ -1019,6 +1017,15 @@
       <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
     </history-entry>
     <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 11h 35m 04s.xml">
+      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 12h 27m 11s.xml">
+      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 12h 28m 20s.xml">
+      <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="tests_com_tfl_billing_in_Oyster-Idea - 2017.11.27 at 12h 28m 50s.xml">
       <configuration name="tests.com.tfl.billing in Oyster-Idea" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1042,7 +1049,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32810867" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32810867" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1083,7 +1090,8 @@
     <MESSAGE value="Renamed method" />
     <MESSAGE value="Refactored test utilities into separate package&#10;" />
     <MESSAGE value="Decoupled helper classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Decoupled helper classes" />
+    <MESSAGE value="Refactored TravelTracker tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored TravelTracker tests" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1350,16 +1358,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/helper/ITotalHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/helper/ICardHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1447,14 +1445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/helper/DefaultCardHelperTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-594">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/TravelTracker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -1466,10 +1456,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tfl/billing/helper/ITotalHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/helper/DefaultCardHelperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/com/tfl/billing/TravelTrackerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        <state relative-caret-position="288">
+          <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
           <folding />
         </state>
       </provider>
