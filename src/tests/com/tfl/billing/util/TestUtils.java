@@ -32,6 +32,7 @@ public class TestUtils {
                 .collect(Collectors.toList());
     }
 
+    // Create journey with given parameters. Uses reflection to set the final field containing time (by default
     public static Journey mockJourney(UUID customer, UUID reader_start, UUID reader_end, int hour, int minute, int duration) {
         Calendar now = Calendar.getInstance();
         now.set(Calendar.HOUR_OF_DAY, hour);
@@ -71,7 +72,7 @@ public class TestUtils {
 
             @Override
             public boolean isRegisteredId(UUID customer) {
-                return customers.stream().anyMatch(cust -> cust.cardId().equals(customer));
+                return customers.stream().anyMatch(c -> c.cardId().equals(customer));
             }
         };
     }
@@ -82,14 +83,11 @@ public class TestUtils {
     }
 
     private static int getRandomNumber() {
-        int randomInt;
-        Random randomGenerator = new Random();
-        randomInt = randomGenerator.nextInt(CHAR_LIST.length());
+        int randomInt = new Random().nextInt(CHAR_LIST.length());
         if (randomInt - 1 == -1) {
             return randomInt;
-        } else {
-            return randomInt - 1;
         }
+        return randomInt - 1;
     }
 
     private static String generateRandomString(int length) {
