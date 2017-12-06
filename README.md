@@ -3,5 +3,5 @@
 ### Team members
 
 * Marcin Praski
-* Freddie Bird
+* Frederick Bird
 * Cavan Black
